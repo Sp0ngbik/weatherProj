@@ -1,22 +1,54 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import checkFunction from "../redux/actions";
+import {
+  decrement,
+  increment,
+  incrementAsync,
+  incrementByAmount,
+} from "../toolkitReducer/toolkitCounter";
 
 const MainPage = () => {
-  const dispatch = useDispatch();
-  const checkSelector = useSelector((state) => {
-    return state.checkReducer;
+  const counter = useSelector((state) => {
+    return state.counter.value;
   });
+  const [incrementAmount, setIncrementAmount] = useState("2");
+  const dispatch = useDispatch();
   return (
     <div>
       <div>hello</div>
       <button
         onClick={() => {
-          dispatch(checkFunction());
+          dispatch(increment());
         }}
       >
-        redux
+        increment
       </button>
-      <div>{checkSelector}</div>
+      <button
+        onClick={() => {
+          dispatch(decrement());
+        }}
+      >
+        decrement
+      </button>
+      <input
+        value={incrementAmount}
+        onChange={(e) => setIncrementAmount(e.target.value)}
+      ></input>
+      <button
+        onClick={() => {
+          dispatch(incrementByAmount(Number(incrementAmount)));
+        }}
+      >
+        incrementByAmount
+      </button>
+      <button
+        onClick={() => {
+          dispatch(incrementAsync(Number(incrementAmount)));
+        }}
+      >
+        async
+      </button>
+      <div>{counter}</div>
     </div>
   );
 };
