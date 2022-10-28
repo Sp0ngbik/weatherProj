@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  value: 0,
-};
+const initialState = { value: 0 };
 
-export const counterSlice = createSlice({
+export const toolkitSlicer = createSlice({
   name: "counter",
   initialState,
   reducers: {
@@ -20,12 +18,13 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions;
-
-export const incrementAsync = (payload) => (dispatch) => {
+export const asyncProcces = (amount) => (dispatch) => {
   setTimeout(() => {
-    dispatch(incrementByAmount(payload));
+    dispatch(incrementByAmount(amount));
   }, 2000);
 };
 
-export default counterSlice.reducer;
+export const { increment, decrement, incrementByAmount } =
+  toolkitSlicer.actions;
+
+export default toolkitSlicer.reducer;

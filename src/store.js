@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import toolkitCounter from "./toolkitReducer/toolkitCounter";
-
+import toolkitSlicer from "./toolkitReducer/toolkitCounter";
 export const store = configureStore({
   reducer: {
-    counter: toolkitCounter,
+    counter: toolkitSlicer,
   },
 });
